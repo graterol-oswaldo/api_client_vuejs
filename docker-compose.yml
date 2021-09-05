@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  vue3:
+    image: vue_green_apple
+    container_name: vue_green_apple
+    build: .
+    ports:
+      - "9000:80"
+      - "9091:8080"
+    volumes:
+      - "./vue3:/usr/local/apache2/htdocs/"

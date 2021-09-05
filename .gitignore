@@ -1,0 +1,23 @@
+vue3/vue3-green-apple/.DS_Store
+vue3/vue3-green-apple/node_modules
+vue3/vue3-green-apple/dist
+
+
+# local env files
+vue3/vue3-green-apple/.env.local
+vue3/vue3-green-apple/.env.*.local
+
+# Log files
+vue3/vue3-green-apple/npm-debug.log*
+vue3/vue3-green-apple/yarn-debug.log*
+vue3/vue3-green-apple/yarn-error.log*
+vue3/vue3-green-apple/pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

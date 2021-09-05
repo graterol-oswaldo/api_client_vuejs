@@ -1,0 +1,158 @@
+<template>
+  <div
+    class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0 bg-gray-100"
+  >
+    <div class="bg-gray-100 mx-auto">
+      <div>
+        <div class="flex justify-center pt-4  h-auto m-auto">
+          <router-link to="/">
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="200.000000pt"
+              height="220.000000pt"
+              viewBox="0 0 900.000000 920.000000"
+              preserveAspectRatio="xMidYMid meet"
+              class="fill-current text-green-700"
+            >
+              <g
+                transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)"
+                fill="currentColor"
+                stroke="none"
+              >
+                <path
+                  d="M1731 9175 c-45 -33 -21 -118 110 -393 176 -369 346 -599 574 -777
+258 -201 632 -333 1135 -400 218 -28 695 -96 758 -106 l62 -11 0 -42 c0 -56
+-21 -310 -25 -315 -5 -4 -15 -2 -290 77 -305 87 -427 113 -755 159 -162 22
+-810 26 -960 5 -493 -70 -920 -241 -1288 -516 -125 -94 -339 -304 -433 -426
+-341 -442 -530 -938 -600 -1580 -7 -63 -13 -221 -13 -350 1 -260 16 -436 64
+-720 137 -812 512 -1641 1098 -2430 189 -253 322 -406 507 -579 531 -497 1180
+-723 1900 -660 269 23 493 87 826 234 l100 44 97 -43 c168 -75 361 -143 527
+-186 141 -36 183 -42 348 -52 478 -30 829 38 1232 237 427 210 727 475 1109
+979 105 139 307 440 403 601 516 866 775 1724 776 2565 1 286 -19 484 -79 780
+-68 339 -222 705 -426 1014 -163 247 -422 498 -708 687 -292 194 -764 361
+-1130 401 -147 16 -721 15 -895 -1 -217 -20 -423 -60 -778 -151 -106 -28 -171
+-40 -177 -34 -11 11 26 185 61 294 52 160 163 326 278 414 76 59 101 91 101
+130 -1 69 -124 300 -194 363 -46 42 -70 41 -158 -13 -132 -81 -251 -219 -351
+-410 -34 -64 -67 -119 -73 -121 -6 -2 -19 16 -29 39 -52 124 -70 158 -108 218
+-138 216 -301 377 -553 546 -338 226 -809 399 -1304 478 -190 31 -401 53 -580
+61 -118 6 -138 5 -159 -10z m1029 -2370 c0 -2 -69 -39 -154 -83 -264 -137
+-448 -274 -677 -504 -340 -341 -524 -653 -628 -1067 -48 -190 -83 -265 -160
+-341 -74 -74 -153 -112 -248 -118 -65 -4 -76 -2 -118 22 -118 70 -150 202
+-100 423 96 424 422 933 781 1219 263 210 577 357 914 430 101 21 390 35 390
+19z"
+                />
+              </g>
+            </svg>
+          </router-link>
+        </div>
+      </div>
+      <div
+        class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+      >
+        <form novalidate @submit.prevent="login">
+          <div>
+            <label class="block font-medium text-sm text-gray-700" for="email">
+              <span>Correo Electrónico</span>
+            </label>
+            <input
+              class="border border-gray-400 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-sm shadow-sm mt-1 block w-full"
+              id="email"
+              type="email"
+              v-model="form.email"
+              required=""
+              autofocus=""
+            />
+            <p
+              class="mt-2 text-xs text-red-600"
+              v-if="this.errors.exist && this.errors.fields.email"
+            >
+              {{ this.errors.fields.email[0] }}
+            </p>
+          </div>
+          <div class="mt-4">
+            <label
+              class="block font-medium text-sm text-gray-700"
+              for="password"
+            >
+              <span>Contraseña</span>
+            </label>
+            <input
+              class="border border-gray-400 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-sm shadow-sm mt-1 block w-full"
+              id="password"
+              type="password"
+              v-model="form.password"
+              required=""
+              autocomplete="current-password"
+            />
+            <p
+              class="mt-2 text-xs text-red-600"
+              v-if="this.errors.exist && this.errors.fields.password"
+            >
+              {{ this.errors.fields.password[0] }}
+            </p>
+          </div>
+          <div class="block mt-4">
+            <label class="flex justify-center">
+              <input
+                type="checkbox"
+                v-model="remember"
+                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                name="remember"
+              />
+              <span class="ml-2 text-sm text-gray-600">Recuérdame</span>
+            </label>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" class="btn btn-primary">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import axios from "axios";
+
+export default {
+  name: "AppLogin",
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+      remember: false,
+      errors: {
+        exist: false,
+        fields: {},
+      },
+    };
+  },
+  methods: {
+    async login() {
+      await axios
+        .post("http://api.mv.com/api/login", this.form)
+        .then((response) => {
+          console.log(response.status);
+          if (response.status >= 200 && response.status < 300) {
+            this.$store.dispatch("saveToken", {
+              token: response.data,
+              remember: this.remember,
+            });
+
+            this.$router.push({ name: "Products" });
+          }
+        })
+        .catch((error) => {
+          this.errors.exist = true;
+          if (error.response.status === 422) {
+            this.errors.fields = error.response.data.errors || {};
+          }
+        });
+    },
+  },
+};
+</script>
